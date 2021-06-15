@@ -48,6 +48,22 @@ public class ProfServiceImpl implements ProfService {
     }
 
     @Override
+    public int update(Prof prof, Long id) {
+        Prof prof1Existe = findById(id);
+        if (prof1Existe != null) {
+            if (prof.getLogin() != null) prof1Existe.setLogin(prof.getLogin());
+            if (prof.getEmail() != null) prof1Existe.setEmail(prof.getEmail());
+            if (prof.getPassword() != null) prof1Existe.setPassword(prof.getPassword());
+            if (prof.getTelephone() != null) prof1Existe.setTelephone(prof.getTelephone());
+            if (prof.getSex() != null) prof1Existe.setSex(prof.getSex());
+            profDao.save(prof1Existe);
+            return 1;
+        } else {
+            return -1;
+        }
+    }
+
+    @Override
     public List<Prof> findAll() {
         return profDao.findAll();
     }
