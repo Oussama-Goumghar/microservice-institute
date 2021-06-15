@@ -6,6 +6,7 @@ import com.elearning.simplwelearninginstitute.repository.ProfRequesteDao;
 import com.elearning.simplwelearninginstitute.service.EtudiantRequestService;
 import com.elearning.simplwelearninginstitute.service.EtudiantService;
 import com.elearning.simplwelearninginstitute.service.InstituteService;
+import com.elearning.simplwelearninginstitute.service.ParcourService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,18 +20,22 @@ public class EtudiantRequestServiceImpl implements EtudiantRequestService {
     InstituteService instituteService;
     @Autowired
     EtudiantService etudiantService;
+    @Autowired
+    ParcourService parcourService;
 
 
     @Override
-    public int save(EtudiantRequest etudiantRequest, Long instituteId) {
+    public int save(EtudiantRequest etudiantRequest, Long instituteId,Long parcourId) {
         if (etudiantRequestDao.findEtudiantRequestByLogin(etudiantRequest.getLogin()) != null) {
             return -2;
         } else {
             Institute institute = instituteService.findById(instituteId);
-            if ( institute== null) {
+            Parcour parcour = parcourService.findById(parcourId);
+            if ( institute== null || parcour==null) {
                 return -3;
             } else {
                 etudiantRequest.setInstitute(institute);
+                etudiantRequest.setParcour(parcour);
                 etudiantRequest.setEtat(false);
                 etudiantRequestDao.save(etudiantRequest);
                 return 1;
@@ -105,7 +110,7 @@ public class EtudiantRequestServiceImpl implements EtudiantRequestService {
                 etudiant.setPrenom(etudiantRequest.getPrenom());
                 etudiant.setDateNaissance(etudiantRequest.getDateNaissance());
 
-                int res=  etudiantService.save(etudiant,etudiantRequest.getInstitute().getId());
+                int res=  etudiantService.save(etudiant,etudiantRequest.getInstitute().getId(),etudiantRequest.getParcour().getId());
                 if (res == 1) {
                     etudiantRequestDao.delete(etudiantRequest);
                 }

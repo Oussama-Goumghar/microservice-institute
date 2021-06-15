@@ -2,10 +2,12 @@ package com.elearning.simplwelearninginstitute.service.impl;
 
 
 import com.elearning.simplwelearninginstitute.entities.Institute;
+import com.elearning.simplwelearninginstitute.entities.Parcour;
 import com.elearning.simplwelearninginstitute.entities.Prof;
 import com.elearning.simplwelearninginstitute.entities.ProfRequeste;
 import com.elearning.simplwelearninginstitute.repository.ProfRequesteDao;
 import com.elearning.simplwelearninginstitute.service.InstituteService;
+import com.elearning.simplwelearninginstitute.service.ParcourService;
 import com.elearning.simplwelearninginstitute.service.ProfRequesteService;
 import com.elearning.simplwelearninginstitute.service.ProfService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,18 +24,22 @@ public class ProfRequesteServiceImpl implements ProfRequesteService {
     InstituteService instituteService;
     @Autowired
     ProfService profService;
+    @Autowired
+    ParcourService parcourService;
 
 
     @Override
-    public int save(ProfRequeste profRequeste, Long instituteId) {
+    public int save(ProfRequeste profRequeste, Long instituteId,Long parcourId) {
         if (profRequesteDao.findProfRequestesByLogin(profRequeste.getLogin()) != null) {
             return -2;
         } else {
             Institute institute = instituteService.findById(instituteId);
-            if ( institute== null) {
+            Parcour parcour = parcourService.findById(parcourId);
+            if ( institute== null || parcour==null) {
                 return -3;
             } else {
                 profRequeste.setInstitute(institute);
+                profRequeste.setParcour(parcour);
                 profRequeste.setEtat(false);
                 profRequesteDao.save(profRequeste);
                 return 1;
@@ -110,7 +116,7 @@ public class ProfRequesteServiceImpl implements ProfRequesteService {
                 prof.setTelephone(profRequeste.getTelephone());
                 prof.setSex(profRequeste.getSex());
 
-                int res=  profService.save(prof,profRequeste.getInstitute().getId());
+                int res=  profService.save(prof,profRequeste.getInstitute().getId(),profRequeste.getParcour().getId());
                 if (res == 1) {
                     profRequesteDao.delete(profRequeste);
                 }

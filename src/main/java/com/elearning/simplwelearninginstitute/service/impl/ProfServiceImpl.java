@@ -1,9 +1,11 @@
 package com.elearning.simplwelearninginstitute.service.impl;
 
 import com.elearning.simplwelearninginstitute.entities.Institute;
+import com.elearning.simplwelearninginstitute.entities.Parcour;
 import com.elearning.simplwelearninginstitute.entities.Prof;
 import com.elearning.simplwelearninginstitute.repository.ProfDao;
 import com.elearning.simplwelearninginstitute.service.InstituteService;
+import com.elearning.simplwelearninginstitute.service.ParcourService;
 import com.elearning.simplwelearninginstitute.service.ProfService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,23 +18,28 @@ public class ProfServiceImpl implements ProfService {
     private ProfDao profDao;
     @Autowired
     private InstituteService instituteService;
+    @Autowired
+    ParcourService parcourService;
 
 
     @Override
-    public int save(Prof prof, Long instituteId) {
+    public int save(Prof prof, Long instituteId, Long parcourId) {
 
-            if (profDao.findProfByLogin(prof.getLogin()) != null) {
-                return -2;
+        if (profDao.findProfByLogin(prof.getLogin()) != null) {
+            return -2;
+        } else {
+            Institute institute = instituteService.findById(instituteId);
+            Parcour parcour = parcourService.findById(parcourId);
+
+            if (institute == null || parcour == null) {
+                return -3;
             } else {
-                Institute institute = instituteService.findById(instituteId);
-                if ( institute== null) {
-                    return -3;
-                } else {
-                    prof.setInstitute(institute);
-                    profDao.save(prof);
-                    return 1;
-                }
+                prof.setInstitute(institute);
+                prof.setParcour(parcour);
+                profDao.save(prof);
+                return 1;
             }
+        }
 
     }
 

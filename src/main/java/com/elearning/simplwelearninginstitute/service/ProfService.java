@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ProfService {
 
-    public int save(Prof prof, Long instituteId);
+    public int save(Prof prof, Long instituteId,Long parcourId);
 
     public int delete(Long id);
 

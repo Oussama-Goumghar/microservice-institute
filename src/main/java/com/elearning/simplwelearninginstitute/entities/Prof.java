@@ -33,6 +33,8 @@ public class Prof implements Serializable {
     private String sex;
     @ManyToOne
     private Institute institute;
+    @ManyToOne
+    private Parcour parcour;
 
 
 }

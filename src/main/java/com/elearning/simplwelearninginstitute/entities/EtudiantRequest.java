@@ -31,4 +31,6 @@ public class EtudiantRequest implements Serializable {
     private boolean etat;
     @ManyToOne
     private Institute institute;
+    @ManyToOne
+    private Parcour parcour;
 }

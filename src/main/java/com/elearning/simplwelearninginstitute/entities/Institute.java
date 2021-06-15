@@ -37,5 +37,9 @@ public class Institute implements Serializable {
     @JsonIgnoreProperties({"institute"})
     private List<Prof> profs;
 
+    @OneToMany(mappedBy = "institute",  cascade = {CascadeType.ALL})
+    @JsonIgnoreProperties({"institute"})
+    private List<Parcour> parcours;
+
 
 }

@@ -3,10 +3,12 @@ package com.elearning.simplwelearninginstitute.service.impl;
 
 import com.elearning.simplwelearninginstitute.entities.Etudiant;
 import com.elearning.simplwelearninginstitute.entities.Institute;
+import com.elearning.simplwelearninginstitute.entities.Parcour;
 import com.elearning.simplwelearninginstitute.entities.Prof;
 import com.elearning.simplwelearninginstitute.repository.EtudiantDao;
 import com.elearning.simplwelearninginstitute.service.EtudiantService;
 import com.elearning.simplwelearninginstitute.service.InstituteService;
+import com.elearning.simplwelearninginstitute.service.ParcourService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,21 +17,27 @@ import java.util.List;
 @Service
 public class EtudiantServiceImpl implements EtudiantService {
 
+
     @Autowired
     private EtudiantDao etudiantDao;
     @Autowired
     private InstituteService instituteService;
+    @Autowired
+    ParcourService parcourService;
 
     @Override
-    public int save(Etudiant etudiant, Long instituteId) {
+    public int save(Etudiant etudiant, Long instituteId,Long parcourId) {
         if (etudiantDao.findEtudiantByLogin(etudiant.getLogin()) != null) {
             return -2;
         } else {
             Institute institute = instituteService.findById(instituteId);
-            if ( institute== null) {
+            Parcour parcour = parcourService.findById(parcourId);
+
+            if ( institute== null || parcour==null) {
                 return -3;
             } else {
                 etudiant.setInstitute(institute);
+                etudiant.setParcour(parcour);
                 etudiantDao.save(etudiant);
                 return 1;
             }

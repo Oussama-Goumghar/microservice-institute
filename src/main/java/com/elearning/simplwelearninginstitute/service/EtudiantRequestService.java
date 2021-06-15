@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface EtudiantRequestService {
 
-    public int save(EtudiantRequest etudiantRequest, Long instituteId);
+    public int save(EtudiantRequest etudiantRequest, Long instituteId,Long parcourId);
 
     public int delete(Long id);
 

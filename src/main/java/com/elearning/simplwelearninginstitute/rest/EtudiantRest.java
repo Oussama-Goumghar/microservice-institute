@@ -15,9 +15,9 @@ public class EtudiantRest {
     @Autowired
     private EtudiantService etudiantService;
 
-    @PostMapping("/instituteId/{instituteId}")
-    public int save(@RequestBody Etudiant etudiant , @PathVariable Long instituteId) {
-        return etudiantService.save(etudiant, instituteId);
+    @PostMapping("/instituteId/{instituteId}/parcourId/{parcourId}")
+    public int save(@RequestBody Etudiant etudiant , @PathVariable Long instituteId, @PathVariable Long parcourId) {
+        return etudiantService.save(etudiant, instituteId,parcourId);
     }
 
     @GetMapping("/")

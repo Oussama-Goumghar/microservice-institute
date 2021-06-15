@@ -15,9 +15,9 @@ public class ProfRequesteRest {
     @Autowired
     ProfRequesteService profRequesteService;
 
-    @PostMapping("/instituteId/{instituteId}")
-    public int save(@RequestBody ProfRequeste profRequeste, @PathVariable Long instituteId) {
-        return profRequesteService.save(profRequeste, instituteId);
+    @PostMapping("/instituteId/{instituteId}/parcourId/{parcourId}")
+    public int save(@RequestBody ProfRequeste profRequeste, @PathVariable Long instituteId, @PathVariable Long parcourId) {
+        return profRequesteService.save(profRequeste, instituteId,parcourId);
     }
 
     @GetMapping("/")
