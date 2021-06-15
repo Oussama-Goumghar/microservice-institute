@@ -1,19 +1,26 @@
 package com.elearning.simplwelearninginstitute.service;
 
-import com.elearning.simplwelearninginstitute.entities.EtudiantRequest;
 import com.elearning.simplwelearninginstitute.entities.ProfRequeste;
 
 import java.util.List;
 
 public interface ProfRequesteService {
 
-    public int save(ProfRequeste profRequeste, Long instituteId);
+    int save(ProfRequeste profRequeste, Long instituteId);
 
-    public int delete(Long id);
+    int delete(Long id);
 
     int update(ProfRequeste profRequeste, Long id);
 
-    public List<ProfRequeste> findAll();
+    int aprouveRequest(Long id);
 
-    public ProfRequeste findById(Long id);
+    List<ProfRequeste> findAll();
+
+    ProfRequeste findById(Long id);
+
+    List<ProfRequeste> findProfRequestApproved();
+
+    ProfRequeste findProfRequestApprovedById(Long id);
+
+    int saveProfAapproved(Long id);
 }

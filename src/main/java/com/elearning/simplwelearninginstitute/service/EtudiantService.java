@@ -12,6 +12,8 @@ public interface EtudiantService {
 
     int update(Etudiant prof, Long id);
 
+
+
     public List<Etudiant> findAll();
 
     public Etudiant findById(Long id);

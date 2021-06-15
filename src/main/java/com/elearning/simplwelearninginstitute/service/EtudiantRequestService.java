@@ -13,7 +13,15 @@ public interface EtudiantRequestService {
 
     int update(EtudiantRequest etudiantRequest, Long id);
 
-    public List<EtudiantRequest> findAll();
+    int aprouveRequest(Long id);
 
-    public EtudiantRequest findById(Long id);
+     List<EtudiantRequest> findAll();
+
+     EtudiantRequest findById(Long id);
+
+    List<EtudiantRequest> findEtudiantRequesteApproved();
+
+    int saveEtudianteApproved(Long id);
+
+
 }
