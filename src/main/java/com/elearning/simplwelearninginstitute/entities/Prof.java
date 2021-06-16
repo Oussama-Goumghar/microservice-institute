@@ -31,6 +31,9 @@ public class Prof implements Serializable {
     private String telephone;
     @NotEmpty
     private String sex;
+    private String prenom;
+
+    private String nom;
     @ManyToOne
     private Institute institute;
     @ManyToOne

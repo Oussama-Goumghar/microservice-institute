@@ -63,6 +63,8 @@ public class ProfServiceImpl implements ProfService {
             if (prof.getPassword() != null) prof1Existe.setPassword(prof.getPassword());
             if (prof.getTelephone() != null) prof1Existe.setTelephone(prof.getTelephone());
             if (prof.getSex() != null) prof1Existe.setSex(prof.getSex());
+            if (prof.getNom() != null) prof1Existe.setNom(prof.getNom());
+            if (prof.getPrenom() != null) prof1Existe.setPrenom(prof.getPrenom());
             profDao.save(prof1Existe);
             return 1;
         } else {

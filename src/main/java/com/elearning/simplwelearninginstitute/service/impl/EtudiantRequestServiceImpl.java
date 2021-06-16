@@ -108,7 +108,6 @@ public class EtudiantRequestServiceImpl implements EtudiantRequestService {
                 etudiant.setSex(etudiantRequest.getSex());
                 etudiant.setNom(etudiantRequest.getNom());
                 etudiant.setPrenom(etudiantRequest.getPrenom());
-                etudiant.setDateNaissance(etudiantRequest.getDateNaissance());
 
                 int res=  etudiantService.save(etudiant,etudiantRequest.getInstitute().getId(),etudiantRequest.getParcour().getId());
                 if (res == 1) {

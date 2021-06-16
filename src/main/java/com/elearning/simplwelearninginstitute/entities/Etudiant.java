@@ -19,7 +19,6 @@ public class Etudiant implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
-    private Date dateNaissance;
     private String telephone;
     private String nom;
     private String prenom;

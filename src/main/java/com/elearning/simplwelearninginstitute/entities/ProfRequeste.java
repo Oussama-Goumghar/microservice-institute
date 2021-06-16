@@ -31,6 +31,10 @@ public class ProfRequeste implements Serializable {
 
     private String cv;
 
+    private String prenom;
+
+    private String nom;
+
     private boolean etat;
     @ManyToOne
     private Institute institute;

@@ -65,7 +65,6 @@ public class EtudiantServiceImpl implements EtudiantService {
             if (etudiant.getPassword() != null) etudiantExiste.setPassword(etudiant.getPassword());
             if (etudiant.getTelephone() != null) etudiantExiste.setTelephone(etudiant.getTelephone());
             if (etudiant.getSex() != null) etudiantExiste.setSex(etudiant.getSex());
-            if (etudiant.getDateNaissance() != null) etudiantExiste.setDateNaissance(etudiant.getDateNaissance());
             etudiantDao.save(etudiantExiste);
             return 1;
         } else {
