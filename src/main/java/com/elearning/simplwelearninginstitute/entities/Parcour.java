@@ -1,6 +1,8 @@
 package com.elearning.simplwelearninginstitute.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,10 +29,21 @@ public class Parcour implements Serializable {
     private Institute institute;
 
     @OneToMany(mappedBy = "parcour", cascade = {CascadeType.ALL})
-    @JsonIgnoreProperties({"parcour"})
     private List<Etudiant> etudiants;
 
     @OneToMany(mappedBy = "parcour", cascade = {CascadeType.ALL})
-    @JsonIgnoreProperties({"parcour"})
     private List<Prof> profs;
+
+    @JsonBackReference
+    public Institute getInstitute() {
+        return institute;
+    }
+    @JsonManagedReference
+    public List<Etudiant> getEtudiants() {
+        return etudiants;
+    }
+    @JsonManagedReference
+    public List<Prof> getProfs() {
+        return profs;
+    }
 }

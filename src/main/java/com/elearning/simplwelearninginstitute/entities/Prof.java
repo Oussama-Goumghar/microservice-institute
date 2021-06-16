@@ -39,5 +39,12 @@ public class Prof implements Serializable {
     @ManyToOne
     private Parcour parcour;
 
-
+    @JsonBackReference
+    public Institute getInstitute() {
+        return institute;
+    }
+    @JsonBackReference
+    public Parcour getParcour() {
+        return parcour;
+    }
 }

@@ -30,4 +30,13 @@ public class Etudiant implements Serializable {
     private Institute institute;
     @ManyToOne
     private Parcour parcour;
+
+    @JsonBackReference
+    public Institute getInstitute() {
+        return institute;
+    }
+    @JsonBackReference
+    public Parcour getParcour() {
+        return parcour;
+    }
 }
