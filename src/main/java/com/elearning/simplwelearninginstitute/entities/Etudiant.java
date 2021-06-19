@@ -26,17 +26,12 @@ public class Etudiant implements Serializable {
     private String login;
     private String password;
     private String sex;
-    @ManyToOne
+    @ManyToOne( cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JsonBackReference(value = "intitute-etudiants")
     private Institute institute;
-    @ManyToOne
+    @ManyToOne( cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JsonBackReference(value = "parcour-etudiants")
     private Parcour parcour;
 
-    @JsonBackReference
-    public Institute getInstitute() {
-        return institute;
-    }
-    @JsonBackReference
-    public Parcour getParcour() {
-        return parcour;
-    }
+
 }

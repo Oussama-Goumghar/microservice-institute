@@ -1,8 +1,6 @@
 package com.elearning.simplwelearninginstitute.vo.converter;
 
 import com.elearning.simplwelearninginstitute.entities.Prof;
-import com.elearning.simplwelearninginstitute.vo.intern.InstituteVo;
-import com.elearning.simplwelearninginstitute.vo.intern.ParcourVo;
 import com.elearning.simplwelearninginstitute.vo.intern.ProfVo;
 import com.elearning.simplwelearninginstitute.vo.utils.AbstractConverter;
 import org.springframework.stereotype.Component;
@@ -44,8 +42,8 @@ public class ProfConverter extends AbstractConverter<Prof, ProfVo> {
             profVo.setSex(item.getSex());
             profVo.setPrenom(item.getPrenom());
             profVo.setNom(item.getNom());
-            profVo.setInstituteVo(new InstituteConverter().toVo(item.getInstitute()));
-            profVo.setParcourVo(new ParcourConverter().toVo(item.getParcour()));
+            //profVo.setInstituteVo(new InstituteConverter().toVo(item.getInstitute()));
+         //   profVo.setParcourVo(new ParcourConverter().toVo(item.getParcour()));
 
             return profVo;
         }

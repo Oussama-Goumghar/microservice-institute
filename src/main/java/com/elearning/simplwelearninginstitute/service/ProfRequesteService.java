@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ProfRequesteService {
 
-    int save(ProfRequeste profRequeste, Long instituteId,Long parcourId);
+    int save(ProfRequeste profRequeste, Long instituteId, Long parcourId);
 
     int delete(Long id);
 
@@ -19,6 +19,8 @@ public interface ProfRequesteService {
     ProfRequeste findById(Long id);
 
     List<ProfRequeste> findProfRequestApproved();
+
+    List<ProfRequeste> findProfRequestByInstitute(Long id);
 
     ProfRequeste findProfRequestApprovedById(Long id);
 

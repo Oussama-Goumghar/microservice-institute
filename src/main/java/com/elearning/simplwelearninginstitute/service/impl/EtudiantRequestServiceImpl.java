@@ -91,15 +91,17 @@ public class EtudiantRequestServiceImpl implements EtudiantRequestService {
     }
 
     @Override
+    public List<EtudiantRequest> findEtudiantRequesteByInstitute(Long id) {
+        return etudiantRequestDao.findEtudiantRequestByInstituteIdAndEtatIsFalse(id);
+    }
+
+    @Override
     public int saveEtudianteApproved(Long id) {
         EtudiantRequest etudiantRequest=findById(id);
 
         if (etudiantRequest == null) {
             return -1;
         } else {
-            if (!etudiantRequest.isEtat()) {
-                return -4;
-            } else {
                 Etudiant etudiant = new Etudiant();
                 etudiant.setLogin(etudiantRequest.getLogin());
                 etudiant.setPassword(etudiantRequest.getPassword());
@@ -114,7 +116,6 @@ public class EtudiantRequestServiceImpl implements EtudiantRequestService {
                     etudiantRequestDao.delete(etudiantRequest);
                 }
                 return res;
-            }
         }
     }
 }

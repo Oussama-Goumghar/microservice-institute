@@ -35,6 +35,11 @@ public class EtudiantRequestRest {
         return etudiantRequestService.aprouveRequest(id);
     }
 
+    @GetMapping("/instituteId/{id}")
+    public List<EtudiantRequest> findRequestByInstitute(@PathVariable Long id) {
+        return etudiantRequestService.findEtudiantRequesteByInstitute(id);
+    }
+
     @GetMapping("/approved/")
     public List<EtudiantRequest> findRequestApproved() {
         return etudiantRequestService.findEtudiantRequesteApproved();

@@ -1,11 +1,13 @@
 package com.elearning.simplwelearninginstitute.vo.intern;
 
+import com.elearning.simplwelearninginstitute.vo.intern.institute.EtudiantInstituteVo;
+import com.elearning.simplwelearninginstitute.vo.intern.institute.InstituteVo;
+import com.elearning.simplwelearninginstitute.vo.intern.institute.ProfInstituteVo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import java.util.Date;
 import java.util.List;
 
 @AllArgsConstructor
@@ -18,7 +20,7 @@ public class ParcourVo {
     private String description;
     private String dateCreation;
     private InstituteVo instituteVo;
-    private List<EtudiantVo> etudiantVos;
-    private List<ProfVo> profVos;
+    private List<EtudiantInstituteVo> etudiantVos;
+    private List<ProfInstituteVo> profVos;
 
 }

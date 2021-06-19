@@ -1,11 +1,10 @@
 package com.elearning.simplwelearninginstitute.vo.intern;
 
+import com.elearning.simplwelearninginstitute.vo.intern.institute.InstituteVo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-
-import javax.validation.constraints.NotEmpty;
 
 @AllArgsConstructor
 @NoArgsConstructor

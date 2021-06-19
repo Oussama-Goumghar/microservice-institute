@@ -21,6 +21,8 @@ public interface EtudiantRequestService {
 
     List<EtudiantRequest> findEtudiantRequesteApproved();
 
+    List<EtudiantRequest> findEtudiantRequesteByInstitute(Long id);
+
     int saveEtudianteApproved(Long id);
 
 

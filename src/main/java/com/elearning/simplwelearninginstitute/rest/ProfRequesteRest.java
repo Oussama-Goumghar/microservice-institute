@@ -41,6 +41,12 @@ public class ProfRequesteRest {
         return profRequesteService.findProfRequestApproved();
     }
 
+    @GetMapping("/instituteId/{id}")
+    public List<ProfRequeste> findRequestByInstitute(@PathVariable Long id) {
+        return profRequesteService.findProfRequestByInstitute(id);
+    }
+
+
     @GetMapping("/approved/id/{id}")
     public ProfRequeste findRequestApproved(@PathVariable Long id) {
         return profRequesteService.findProfRequestApprovedById(id);

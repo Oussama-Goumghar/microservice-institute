@@ -95,8 +95,13 @@ public class ProfRequesteServiceImpl implements ProfRequesteService {
     }
 
     @Override
+    public List<ProfRequeste> findProfRequestByInstitute(Long id) {
+        return profRequesteDao.findProfRequesteByInstituteIdAndEtatIsFalse(id);
+    }
+
+    @Override
     public ProfRequeste findProfRequestApprovedById(Long id) {
-        return profRequesteDao.findProfRequesteByIdAndEtatIsTrue(id);
+        return profRequesteDao.findProfRequesteByIdAndEtatIsFalse(id);
     }
 
     @Override
@@ -106,22 +111,22 @@ public class ProfRequesteServiceImpl implements ProfRequesteService {
         if (profRequeste == null) {
             return -1;
         } else {
-            if (!profRequeste.isEtat()) {
-                return -4;
-            } else {
+
                 Prof prof = new Prof();
                 prof.setLogin(profRequeste.getLogin());
                 prof.setPassword(profRequeste.getPassword());
                 prof.setEmail(profRequeste.getEmail());
                 prof.setTelephone(profRequeste.getTelephone());
                 prof.setSex(profRequeste.getSex());
+                prof.setNom(profRequeste.getNom());
+                prof.setPrenom(profRequeste.getPrenom());
 
                 int res=  profService.save(prof,profRequeste.getInstitute().getId(),profRequeste.getParcour().getId());
                 if (res == 1) {
                     profRequesteDao.delete(profRequeste);
                 }
                 return res;
-            }
+
         }
 
     }

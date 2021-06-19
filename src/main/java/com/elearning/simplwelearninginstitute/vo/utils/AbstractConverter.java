@@ -36,10 +36,8 @@ public abstract class AbstractConverter<T, Vo> {
         if (items == null || items.isEmpty()) {
             return new ArrayList<>();
         } else {
-            List<Vo> vos = new ArrayList();
-            items.forEach((item) -> {
-                vos.add(toVo(item));
-            });
+            List<Vo> vos = new ArrayList<>();
+            items.forEach((item) -> vos.add(toVo(item)));
             return vos;
         }
     }

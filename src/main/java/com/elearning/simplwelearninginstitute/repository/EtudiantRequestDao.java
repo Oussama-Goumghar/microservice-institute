@@ -10,4 +10,5 @@ public interface EtudiantRequestDao extends JpaRepository<EtudiantRequest,Long> 
     EtudiantRequest findEtudiantRequestByLogin(String login);
 
     List<EtudiantRequest> findEtudiantRequestByEtatIsTrue();
+    List<EtudiantRequest> findEtudiantRequestByInstituteIdAndEtatIsFalse(Long id);
 }

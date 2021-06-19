@@ -1,6 +1,5 @@
-package com.elearning.simplwelearninginstitute.vo.intern;
+package com.elearning.simplwelearninginstitute.vo.intern.institute;
 
-import com.elearning.simplwelearninginstitute.vo.intern.institute.InstituteVo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,7 +9,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @Data
 @ToString
-public class EtudiantVo {
+public class EtudiantInstituteVo {
     private Long id;
     private String telephone;
     private String nom;
@@ -19,6 +18,4 @@ public class EtudiantVo {
     private String login;
     private String password;
     private String sex;
-    private ParcourVo parcourVo;
-    private InstituteVo instituteVo;
 }

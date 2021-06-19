@@ -10,5 +10,6 @@ public interface ProfRequesteDao extends JpaRepository<ProfRequeste,Long> {
 
     ProfRequeste findProfRequestesByLogin(String login);
     List<ProfRequeste> findProfRequesteByEtatIsTrue();
-    ProfRequeste findProfRequesteByIdAndEtatIsTrue(Long id);
+    ProfRequeste findProfRequesteByIdAndEtatIsFalse(Long id);
+    List<ProfRequeste> findProfRequesteByInstituteIdAndEtatIsFalse(Long id);
 }

@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -25,25 +27,19 @@ public class Parcour implements Serializable {
     private String title;
     private String description;
     private Date dateCreation;
-    @ManyToOne
+    @ManyToOne( cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JsonBackReference(value = "intitute-parcours")
     private Institute institute;
 
-    @OneToMany(mappedBy = "parcour", cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "parcour", cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
+    @JsonManagedReference(value = "parcour-etudiants")
+    @Fetch(value = FetchMode.SUBSELECT)
     private List<Etudiant> etudiants;
 
-    @OneToMany(mappedBy = "parcour", cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "parcour", cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
+    @JsonManagedReference(value = "parcour-profs")
+    @Fetch(value = FetchMode.SUBSELECT)
     private List<Prof> profs;
 
-    @JsonBackReference
-    public Institute getInstitute() {
-        return institute;
-    }
-    @JsonManagedReference
-    public List<Etudiant> getEtudiants() {
-        return etudiants;
-    }
-    @JsonManagedReference
-    public List<Prof> getProfs() {
-        return profs;
-    }
+
 }

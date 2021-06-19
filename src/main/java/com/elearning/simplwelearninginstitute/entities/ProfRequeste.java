@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
+
 import java.io.Serializable;
 
 @Entity
@@ -18,23 +18,14 @@ public class ProfRequeste implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
-    @NotEmpty
     private String login;
-    @NotEmpty
     private String password;
-    @NotEmpty
     private String email;
-    @NotEmpty
     private String telephone;
-    @NotEmpty
     private String sex;
-
     private String cv;
-
     private String prenom;
-
     private String nom;
-
     private boolean etat;
     @ManyToOne
     private Institute institute;

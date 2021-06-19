@@ -1,9 +1,7 @@
 package com.elearning.simplwelearninginstitute.vo.converter;
 
 import com.elearning.simplwelearninginstitute.entities.EtudiantRequest;
-import com.elearning.simplwelearninginstitute.entities.Institute;
 import com.elearning.simplwelearninginstitute.vo.intern.EtudiantReauestVo;
-import com.elearning.simplwelearninginstitute.vo.intern.InstituteVo;
 import com.elearning.simplwelearninginstitute.vo.utils.AbstractConverter;
 import org.springframework.stereotype.Component;
 

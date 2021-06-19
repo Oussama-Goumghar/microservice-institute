@@ -1,8 +1,8 @@
 package com.elearning.simplwelearninginstitute.vo.converter;
 
-import com.elearning.simplwelearninginstitute.entities.Institute;
 import com.elearning.simplwelearninginstitute.entities.Parcour;
-import com.elearning.simplwelearninginstitute.vo.intern.InstituteVo;
+import com.elearning.simplwelearninginstitute.vo.converter.instittueVos.EtudiantInstituteConverter;
+import com.elearning.simplwelearninginstitute.vo.converter.instittueVos.ProfInstituteConverter;
 import com.elearning.simplwelearninginstitute.vo.intern.ParcourVo;
 import com.elearning.simplwelearninginstitute.vo.utils.AbstractConverter;
 import com.elearning.simplwelearninginstitute.vo.utils.DateUtil;
@@ -20,8 +20,7 @@ public class ParcourConverter extends AbstractConverter<Parcour, ParcourVo> {
             parcour.setTitle(parcourVo.getTitle());
             parcour.setDescription(parcourVo.getDescription());
             parcour.setInstitute(new InstituteConverter().toItem(parcourVo.getInstituteVo()));
-            parcour.setEtudiants(new EtudiantConverter().toItem(parcourVo.getEtudiantVos()));
-            parcour.setProfs(new ProfConverter().toItem(parcourVo.getProfVos()));
+
 
             return parcour;
         }
@@ -35,11 +34,11 @@ public class ParcourConverter extends AbstractConverter<Parcour, ParcourVo> {
             ParcourVo parcourVo = new ParcourVo();
             parcourVo.setId(item.getId());
             parcourVo.setTitle(item.getTitle());
-            parcourVo.setDateCreation(DateUtil.formateDate(item.getDateCreation()));
+           parcourVo.setDateCreation(DateUtil.formateDate(item.getDateCreation()));
             parcourVo.setDescription(item.getDescription());
             parcourVo.setInstituteVo(new InstituteConverter().toVo(item.getInstitute()));
-            parcourVo.setEtudiantVos(new EtudiantConverter().toVo(item.getEtudiants()));
-            parcourVo.setProfVos(new ProfConverter().toVo(item.getProfs()));
+            parcourVo.setEtudiantVos(new EtudiantInstituteConverter().toVo(item.getEtudiants()));
+            parcourVo.setProfVos(new ProfInstituteConverter().toVo(item.getProfs()));
 
             return parcourVo;
         }

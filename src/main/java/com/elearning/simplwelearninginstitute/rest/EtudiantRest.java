@@ -3,6 +3,8 @@ package com.elearning.simplwelearninginstitute.rest;
 import com.elearning.simplwelearninginstitute.entities.Etudiant;
 import com.elearning.simplwelearninginstitute.entities.Prof;
 import com.elearning.simplwelearninginstitute.service.EtudiantService;
+import com.elearning.simplwelearninginstitute.vo.converter.EtudiantConverter;
+import com.elearning.simplwelearninginstitute.vo.intern.EtudiantVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,13 +18,17 @@ public class EtudiantRest {
     private EtudiantService etudiantService;
 
     @PostMapping("/instituteId/{instituteId}/parcourId/{parcourId}")
-    public int save(@RequestBody Etudiant etudiant , @PathVariable Long instituteId, @PathVariable Long parcourId) {
+    public int save(@RequestBody EtudiantVo etudiantVo , @PathVariable Long instituteId, @PathVariable Long parcourId) {
+        Etudiant etudiant = new EtudiantConverter().toItem(etudiantVo);
         return etudiantService.save(etudiant, instituteId,parcourId);
     }
 
     @GetMapping("/")
-    public List<Etudiant> findAll() {
-        return etudiantService.findAll();
+    public List<EtudiantVo> findAll() {
+        EtudiantConverter etudiantConverter = new EtudiantConverter();
+        List<Etudiant> etudiants= etudiantService.findAll();
+        return etudiantConverter.toVo(etudiants);
+
     }
 
     @DeleteMapping("/{id}")
@@ -31,7 +37,8 @@ public class EtudiantRest {
     }
 
     @PutMapping("/{id}")
-    public int update(@RequestBody Etudiant etudiant, @PathVariable Long id) {
+    public int update(@RequestBody EtudiantVo etudiantVo, @PathVariable Long id) {
+        Etudiant etudiant = new EtudiantConverter().toItem(etudiantVo);
         return etudiantService.update(etudiant, id);
     }
 }
