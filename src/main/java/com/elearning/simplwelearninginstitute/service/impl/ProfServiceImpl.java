@@ -76,7 +76,10 @@ public class ProfServiceImpl implements ProfService {
     public List<Prof> findAll() {
         return profDao.findAll();
     }
-
+    @Override
+    public Prof findByLogin(String login) {
+        return profDao.findProfByLogin(login);
+    }
     @Override
     public Prof findById(Long id) {
         if (profDao.findById(id).isPresent()) {

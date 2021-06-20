@@ -72,4 +72,15 @@ public class InstituteServcieImpl implements InstituteService {
         }
 
     }
+
+    @Override
+    public Institute login(String login, String password) {
+        Institute institute = instituteDao.findInstituteByLoginAndPassword(login, password);
+        return institute;
+    }
+
+    @Override
+    public Institute findByLogin(String login) {
+        return instituteDao.findInstituteByLogin(login);
+    }
 }

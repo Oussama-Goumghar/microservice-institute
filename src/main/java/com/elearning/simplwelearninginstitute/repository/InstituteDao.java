@@ -6,4 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface InstituteDao extends JpaRepository<Institute,Long> {
 
      Institute findInstituteByLogin(String login);
+     Institute findInstituteByLoginAndPassword(String login,String password);
+
 }

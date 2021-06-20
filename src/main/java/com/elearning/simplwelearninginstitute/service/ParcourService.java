@@ -15,4 +15,6 @@ public interface ParcourService {
     public List<Parcour> findAll();
 
     public Parcour findById(Long id);
+
+    public List<Parcour> findByInstitute(Long id);
 }

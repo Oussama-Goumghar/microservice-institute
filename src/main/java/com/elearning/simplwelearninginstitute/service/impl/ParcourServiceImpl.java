@@ -76,4 +76,9 @@ public class ParcourServiceImpl implements ParcourService {
             return null;
         }
     }
+
+    @Override
+    public List<Parcour> findByInstitute(Long id) {
+        return parcourDao.findParcourByInstituteId(id);
+    }
 }

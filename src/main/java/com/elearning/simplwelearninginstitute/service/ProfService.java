@@ -16,6 +16,7 @@ public interface ProfService {
     public List<Prof> findAll();
 
     public Prof findById(Long id);
+    Prof findByLogin(String login);
 
 
 }

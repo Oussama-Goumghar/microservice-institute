@@ -1,26 +1,34 @@
 package com.elearning.simplwelearninginstitute.rest;
 
 import com.elearning.simplwelearninginstitute.entities.Institute;
+import com.elearning.simplwelearninginstitute.security.services.UserDetailsImpl;
 import com.elearning.simplwelearninginstitute.service.InstituteService;
 import com.elearning.simplwelearninginstitute.vo.converter.InstituteConverter;
 import com.elearning.simplwelearninginstitute.vo.intern.institute.InstituteVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin("*")
 @RequestMapping("/Api/institute")
 public class InstituteRest {
     @Autowired
     private InstituteService instituteService;
+
+    @Autowired
+    PasswordEncoder encoder;
 
 
     @PostMapping("/")
     public int save(@RequestBody InstituteVo instituteVo) {
         InstituteConverter instituteConverter = new InstituteConverter();
         Institute institute = instituteConverter.toItem(instituteVo);
+        institute.setPassword(encoder.encode(institute.getPassword()));
         return instituteService.save(institute);
     }
 
@@ -38,6 +46,22 @@ public class InstituteRest {
         Institute institute= instituteService.findById(id);
         return instituteConverter.toVo(institute);
 
+    }
+
+    @GetMapping("/me")
+    public ResponseEntity<?> me(Authentication auth) {
+        InstituteConverter instituteConverter = new InstituteConverter();
+        UserDetailsImpl user = (UserDetailsImpl)auth.getPrincipal();
+        return ResponseEntity.ok(instituteConverter.toVo(instituteService.findById(user.getUser().getId())));
+    }
+
+
+    @GetMapping("/login/{login}/password/{password}")
+    public InstituteVo findById(@PathVariable String login,@PathVariable String password)
+    {
+        InstituteConverter instituteConverter = new InstituteConverter();
+        Institute institute = instituteService.login(login, password);
+        return instituteConverter.toVo(institute);
     }
 
     @DeleteMapping("/{id}")

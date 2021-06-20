@@ -16,5 +16,8 @@ public interface InstituteService {
 
      Institute findById(Long id);
 
+    Institute login(String login, String password);
+    Institute findByLogin(String login);
+
 
 }

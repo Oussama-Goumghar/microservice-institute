@@ -85,4 +85,8 @@ public class EtudiantServiceImpl implements EtudiantService {
             return null;
         }
     }
+    @Override
+    public Etudiant findByLogin(String login) {
+        return etudiantDao.findEtudiantByLogin(login);
+    }
 }

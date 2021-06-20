@@ -32,6 +32,13 @@ public class ParcourRest {
         return parcourConverter.toVo(parcours);
     }
 
+    @GetMapping("/instituteId/{instituteId}")
+    public List<ParcourVo> findByInstitute( @PathVariable Long instituteId) {
+        ParcourConverter parcourConverter = new ParcourConverter();
+        List<Parcour> parcours= parcourService.findByInstitute(instituteId);
+        return parcourConverter.toVo(parcours);
+    }
+
     @DeleteMapping("/{id}")
     public int delete(@PathVariable Long id) {
         return parcourService.delete(id);
