@@ -70,4 +70,11 @@ public class AdminReste {
         return parcourConverter.toVo(parcours);
     }
 
+    @PostMapping("/saveParcour/instituteId/{instituteId}")
+    public int save(@RequestBody ParcourVo parcourVo, @PathVariable Long instituteId) {
+        ParcourConverter parcourConverter = new ParcourConverter();
+        Parcour parcour = parcourConverter.toItem(parcourVo);
+        return parcourService.save(parcour, instituteId);
+    }
+
 }
