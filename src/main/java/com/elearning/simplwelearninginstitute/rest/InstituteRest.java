@@ -1,9 +1,17 @@
 package com.elearning.simplwelearninginstitute.rest;
 
+import com.elearning.simplwelearninginstitute.entities.Etudiant;
 import com.elearning.simplwelearninginstitute.entities.Institute;
+import com.elearning.simplwelearninginstitute.entities.Prof;
 import com.elearning.simplwelearninginstitute.security.services.UserDetailsImpl;
+import com.elearning.simplwelearninginstitute.service.EtudiantService;
 import com.elearning.simplwelearninginstitute.service.InstituteService;
+import com.elearning.simplwelearninginstitute.service.ProfService;
+import com.elearning.simplwelearninginstitute.vo.converter.EtudiantConverter;
 import com.elearning.simplwelearninginstitute.vo.converter.InstituteConverter;
+import com.elearning.simplwelearninginstitute.vo.converter.ProfConverter;
+import com.elearning.simplwelearninginstitute.vo.intern.EtudiantVo;
+import com.elearning.simplwelearninginstitute.vo.intern.ProfVo;
 import com.elearning.simplwelearninginstitute.vo.intern.institute.InstituteVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +28,11 @@ public class InstituteRest {
     @Autowired
     private InstituteService instituteService;
 
+    @Autowired
+    private EtudiantService etudiantService;
+
+    @Autowired
+    private ProfService profService;
     @Autowired
     PasswordEncoder encoder;
 
@@ -74,6 +87,21 @@ public class InstituteRest {
         InstituteConverter instituteConverter = new InstituteConverter();
         Institute institute = instituteConverter.toItem(instituteVo);
         return instituteService.update(institute, id);
+    }
+
+    @PostMapping("/saveEtudiant/instituteId/{instituteId}/parcourId/{parcourId}")
+    public int save(@RequestBody EtudiantVo etudiantVo , @PathVariable Long instituteId, @PathVariable Long parcourId) {
+        Etudiant etudiant = new EtudiantConverter().toItem(etudiantVo);
+        etudiant.setPassword(encoder.encode(etudiant.getPassword()));
+        return etudiantService.save(etudiant, instituteId,parcourId);
+    }
+
+    @PostMapping("/saveProf/instituteId/{instituteId}/parcourId/{parcourId}")
+    public int save(@RequestBody ProfVo profVo, @PathVariable Long instituteId, @PathVariable Long parcourId) {
+        ProfConverter profConverter = new ProfConverter();
+        Prof prof = profConverter.toItem(profVo);
+        prof.setPassword(encoder.encode(prof.getPassword()));
+        return profService.save(prof, instituteId,parcourId);
     }
 
 }

@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin("http://localhost:4200")
-@RequestMapping("/Api/etudiantRequest")
+@RequestMapping("/Api2/etudiantRequest")
 public class EtudiantRequestRest {
     @Autowired
     EtudiantRequestService etudiantRequestService;

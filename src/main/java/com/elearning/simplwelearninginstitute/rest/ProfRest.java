@@ -2,10 +2,14 @@ package com.elearning.simplwelearninginstitute.rest;
 
 import com.elearning.simplwelearninginstitute.entities.Institute;
 import com.elearning.simplwelearninginstitute.entities.Prof;
+import com.elearning.simplwelearninginstitute.security.services.UserDetailsImpl;
 import com.elearning.simplwelearninginstitute.service.ProfService;
+import com.elearning.simplwelearninginstitute.vo.converter.InstituteConverter;
 import com.elearning.simplwelearninginstitute.vo.converter.ProfConverter;
 import com.elearning.simplwelearninginstitute.vo.intern.ProfVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -40,5 +44,12 @@ public class ProfRest {
         ProfConverter profConverter = new ProfConverter();
         Prof prof = profConverter.toItem(profVo);
         return profService.update(prof, id);
+    }
+
+    @GetMapping("/me")
+    public ResponseEntity<?> me(Authentication auth) {
+        ProfConverter profConverter = new ProfConverter();
+        UserDetailsImpl user = (UserDetailsImpl)auth.getPrincipal();
+        return ResponseEntity.ok(profConverter.toVo(profService.findById(user.getUser().getId())));
     }
 }

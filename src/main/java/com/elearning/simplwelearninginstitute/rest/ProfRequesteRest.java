@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin("http://localhost:4200")
-@RequestMapping("/Api/profRequest")
+@RequestMapping("/Api2/profRequest")
 public class ProfRequesteRest {
 
     @Autowired
